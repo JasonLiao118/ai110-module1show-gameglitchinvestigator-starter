@@ -43,6 +43,8 @@ I decided a bug was really fixed by actually going to the live game and seeing t
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
 - What change did you make that finally gave the game a stable secret number?
 
+The secret number kept changing in the original app because the status was not correctly reset after a new game was clicked. Streamlit works essentially by having a state that is either the player is playing or the player has won. Once the state hits the won state the player cannot keep playing unless they hit the new game button again. However, this new game button did not work properly and this won state was never changed back to playing state once the player wanted to play a new game. The fix that worked was that we correctly changed the state back to playing when the code initially only changed the attempts amount and secret number.
+
 ---
 
 ## 5. Looking ahead: your developer habits
@@ -51,3 +53,5 @@ I decided a bug was really fixed by actually going to the live game and seeing t
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+Before this project, I never knew about refactoring code in a seperate file and then testing that function by using pytest and finally importing that new function into the original file when it worked. Originally, I would just change the function in the original file immediately. Next time, I would try to have AI explain a little more about the code and what is going on before I try to ask it for a solution. This project has made me think that even AI code should be tested before it is immediately imported into the original file.
